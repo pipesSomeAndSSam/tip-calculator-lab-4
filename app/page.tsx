@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Calculator from "./components/Calculator";
 
 export default function Home() {
   return (
@@ -10,7 +11,9 @@ export default function Home() {
         width={75}
         height={75}
       />
-      <div>CALC UI</div>
+      <div>
+        <Calculator />
+      </div>
     </div>
   );
 }
