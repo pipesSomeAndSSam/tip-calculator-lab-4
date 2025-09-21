@@ -68,6 +68,10 @@
   .content-divider{
     @apply flex gap-10 flex-col sm:flex-row items-center justify-center
   }
+
+  .input-container{
+    @apply grid w-full items-center gap-3
+  }
 }
 
 :root {

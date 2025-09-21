@@ -12,7 +12,7 @@ function Calculator() {
     <div className="calculator-card">
       <div className="content-divider">
         <div className="calculator-content">
-          <div className="grid w-full items-center gap-3">
+          <div className="input-container">
             <Label htmlFor="bill">Bill</Label>
             <Input className="pl-10" type="number" id="bill" placeholder="0" />
           </div>
@@ -32,7 +32,7 @@ function Calculator() {
               />
             </div>
           </div>
-          <div className="grid w-full items-center gap-3">
+          <div className="input-container">
             <Label htmlFor="people">Number of People</Label>
             <Input
               className="pl-10"
