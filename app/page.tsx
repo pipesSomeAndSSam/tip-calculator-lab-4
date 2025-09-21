@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Calculator from "./components/Calculator";
+import Calculator from "@/app/components/Calculator";
 
 export default function Home() {
   return (
