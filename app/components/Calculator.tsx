@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import Overview from "./Overview";
 
 function Calculator() {
   return (
@@ -41,7 +42,7 @@ function Calculator() {
             />
           </div>
         </div>
-        <div>OTHER CONTENT</div>
+        <Overview />
       </div>
     </div>
   );
