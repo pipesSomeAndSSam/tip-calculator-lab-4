@@ -1,8 +1,19 @@
-import React from "react";
+import React, { type MouseEventHandler } from "react";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 
-function Overview() {
+function Overview({
+  tip,
+  total,
+  onCLickResetHandler,
+}: {
+  tip: string;
+  total: string;
+  onCLickResetHandler: MouseEventHandler;
+}) {
+  const [x, setx] = useState(0);
+
   return (
     <div className="overview-card">
       <div className="overview-items">
@@ -11,16 +22,19 @@ function Overview() {
             <Label htmlFor="amount">Tip Amount</Label>
             <p className="person-text">/ person</p>
           </div>
-          <p className="amount-text">$0.00</p>
+          <p className="amount-text">${tip}</p>
         </div>
         <div className="overview-content">
           <div>
             <Label htmlFor="total">Total</Label>
             <p className="person-text">/ person</p>
           </div>
-          <p className="amount-text">$0.00</p>
+          <p className="amount-text">${total}</p>
         </div>
-        <Button className="bg-[#26c2ad] text-[#045456] sm:mt-34 sm:px-20 flex">
+        <Button
+          className="bg-[#26c2ad] text-[#045456] sm:mt-34 sm:px-20 flex"
+          onClick={onCLickResetHandler}
+        >
           RESET
         </Button>
       </div>
