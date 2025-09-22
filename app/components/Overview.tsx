@@ -8,7 +8,7 @@ function Overview() {
       <div className="overview-items">
         <div className="overview-content">
           <div>
-            <Label htmlFor="amount">Tip Amoint</Label>
+            <Label htmlFor="amount">Tip Amount</Label>
             <p className="person-text">/ person</p>
           </div>
           <p className="amount-text">$0.00</p>
