@@ -12,8 +12,6 @@ function Overview({
   total: string;
   onCLickResetHandler: MouseEventHandler;
 }) {
-  const [x, setx] = useState(0);
-
   return (
     <div className="overview-card">
       <div className="overview-items">
