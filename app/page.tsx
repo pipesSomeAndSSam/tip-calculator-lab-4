@@ -1,9 +1,14 @@
 import Image from "next/image";
-import Calculator from "@/app/components/Calculator";
+import Calculator from "@/components/ui/Calculator";
+import { Space_Mono } from "next/font/google";
+
+const spaceMone = Space_Mono({
+  weight: "700",
+});
 
 export default function Home() {
   return (
-    <div className="page">
+    <div className={`page ${spaceMone.className}`}>
       <Image
         className="heading"
         src="/logo.svg"
