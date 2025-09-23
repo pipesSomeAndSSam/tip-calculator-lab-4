@@ -24,7 +24,7 @@ function Calculator() {
         : setTip(((bill * (+customPercent / 100)) / numOfPeople).toFixed(2));
     }
     if (numOfPeople > 0 && bill > -1) {
-      setTotal((bill / numOfPeople).toFixed(2));
+      setTotal((bill + +tip / numOfPeople).toFixed(2));
     }
   });
 
