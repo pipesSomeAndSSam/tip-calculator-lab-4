@@ -17,20 +17,14 @@ function Calculator() {
   const [percent, setPercent] = useState(0);
   const [customPercent, setcustomPercent] = useState("");
 
-  let totalval: number = 0;
-
   useEffect(() => {
     if (numOfPeople > 0 && bill > -1) {
       customPercent === ""
         ? setTip(((bill * (percent / 100)) / numOfPeople).toFixed(2))
         : setTip(((bill * (+customPercent / 100)) / numOfPeople).toFixed(2));
     }
-  });
-
-  useEffect(() => {
     if (numOfPeople > 0 && bill > -1) {
-      totalval = bill / numOfPeople;
-      setTotal(totalval.toFixed(2));
+      setTotal((bill / numOfPeople).toFixed(2));
     }
   });
 
@@ -99,7 +93,7 @@ function Calculator() {
                 height={15}
               />
               <Input
-                className="pl-10"
+                className="pl-10 [&::-webkit-inner-spin-button]:appearance-none"
                 type="number"
                 id="bill"
                 placeholder="0"
@@ -132,7 +126,7 @@ function Calculator() {
                 type="number"
                 id="custom"
                 placeholder="Custom"
-                className="h-9 px-8 py-7 sm:placeholder:text-center [&::-webkit-inner-spin-button]:appearance-none"
+                className="h-9 py-7 sm:placeholder:text-center [&::-webkit-inner-spin-button]:appearance-none"
                 value={customPercent}
                 onChange={inputCustomTipHandler}
                 onClick={removeCustomPercent}
@@ -150,7 +144,7 @@ function Calculator() {
                 height={15}
               />
               <Input
-                className="pl-10"
+                className="pl-10 [&::-webkit-inner-spin-button]:appearance-none"
                 type="number"
                 id="people"
                 placeholder="0"
