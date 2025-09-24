@@ -22,6 +22,7 @@
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
 
+  --color-ring-col-r: var(--collrr);
   --color-ring-col-g: var(--collr);
   --color-muted-color-input: var(--muted-text);
   --color-collr-text: var(--collr-text);
@@ -100,6 +101,7 @@
 
 :root {
   --collr: oklch(0.74 0.1297 178.8);
+  --collrr: oklch(57.199% 0.21745 27.661);
   --muted-text: oklch(0.7992 0.027 187.92);
   --collr-text: oklch(0.362 0.061566 201.2359);
 
