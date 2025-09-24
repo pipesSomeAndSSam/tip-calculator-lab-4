@@ -157,7 +157,7 @@ function Calculator() {
               />
               {error && (
                 <p className="absolute right-2 bottom-14 text-sm text-red-500">
-                  Can't be zero
+                  Cant be zero
                 </p>
               )}
               <Input
