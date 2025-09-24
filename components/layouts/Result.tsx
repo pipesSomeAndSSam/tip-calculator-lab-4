@@ -2,7 +2,7 @@ import React, { type MouseEventHandler } from "react";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
-function Overview({
+function Result({
   tip,
   total,
   onCLickResetHandler,
@@ -39,4 +39,4 @@ function Overview({
   );
 }
 
-export default Overview;
+export default Result;
