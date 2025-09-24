@@ -15,6 +15,8 @@ function Calculator() {
   const [numOfPeople, setnumOfPeople] = useState(0);
   const [percent, setPercent] = useState(0);
   const [customPercent, setcustomPercent] = useState("");
+  const [error, setError] = useState("");
+  const [error2, setError2] = useState("");
 
   useEffect(() => {
     if (numOfPeople > 0 && bill > -1) {
@@ -33,13 +35,22 @@ function Calculator() {
   };
 
   const inputBillHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setBill(+event.target.value);
+    if (+event.target.value > -1) {
+      setBill(+event.target.value);
+    }
   };
 
   const inputnumOfPeopleHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setnumOfPeople(+event.target.value);
+    if (+event.target.value < 1) {
+      setError("focus-visible:border-ring-col-r");
+      setError2("focus-visible:ring-ring-col-r");
+    } else {
+      setError("");
+      setError2("");
+      setnumOfPeople(Math.floor(+event.target.value));
+    }
   };
 
   const inputCustomTipHandler = (
@@ -55,6 +66,8 @@ function Calculator() {
     setnumOfPeople(0);
     setPercent(0);
     setcustomPercent("");
+    setError("");
+    setError2("");
   };
 
   const defaultValuePeople = () => {
@@ -142,8 +155,13 @@ function Calculator() {
                 width={15}
                 height={15}
               />
+              {error && (
+                <p className="absolute right-2 bottom-14 text-sm text-red-500">
+                  Can't be zero
+                </p>
+              )}
               <Input
-                className="pl-10 [&::-webkit-inner-spin-button]:appearance-none"
+                className={`pl-10 [&::-webkit-inner-spin-button]:appearance-none ${error} ${error2}`}
                 type="number"
                 id="people"
                 placeholder="0"
