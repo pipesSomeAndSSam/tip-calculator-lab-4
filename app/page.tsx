@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Calculator from "@/components/ui/Calculator";
+import Calculator from "@/components/layouts/Calculator";
 import { Space_Mono } from "next/font/google";
 
 const spaceMone = Space_Mono({

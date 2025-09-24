@@ -1,12 +1,11 @@
 "use client";
 
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import Overview from "./Overview";
+import Result from "./Result";
 
 function Calculator() {
   const tipList = [5, 10, 15, 25, 50];
@@ -154,7 +153,7 @@ function Calculator() {
             </div>
           </div>
         </div>
-        <Overview
+        <Result
           tip={tip.toString()}
           total={total.toString()}
           onCLickResetHandler={() => ressetStates()}
