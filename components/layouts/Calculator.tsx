@@ -1,37 +1,54 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import Result from "./Result";
+import { useCalculator } from "@/hooks/useCalculator";
 
 function Calculator() {
+  const {
+    state,
+    setBill,
+    setCustomPercent,
+    setNumOfPeople,
+    setPercent,
+    reset,
+    removeCustomPercent,
+    seterrorBoarder,
+    seterrorBoarder2,
+  } = useCalculator();
+
   const tipList = [5, 10, 15, 25, 50];
-  const [tip, setTip] = useState((0.0).toFixed(2));
-  const [total, setTotal] = useState((0.0).toFixed(2));
-  const [bill, setBill] = useState(-1);
-  const [numOfPeople, setnumOfPeople] = useState(0);
-  const [percent, setPercent] = useState(0);
-  const [customPercent, setcustomPercent] = useState("");
-  const [error, setError] = useState("");
-  const [error2, setError2] = useState("");
+  const [calculatedTip, setCalculatedTip] = useState((0.0).toFixed(2));
+  const [calculatedTotal, setCalculatedTotal] = useState((0.0).toFixed(2));
 
   useEffect(() => {
-    if (numOfPeople > 0 && bill > -1) {
-      customPercent === ""
-        ? setTip(((bill * (percent / 100)) / numOfPeople).toFixed(2))
-        : setTip(((bill * (+customPercent / 100)) / numOfPeople).toFixed(2));
+    if (state.numOfPeople > 0 && state.bill > -1) {
+      state.customPercent === ""
+        ? setCalculatedTip(
+            ((state.bill * (state.percent / 100)) / state.numOfPeople).toFixed(
+              2
+            )
+          )
+        : setCalculatedTip(
+            (
+              (state.bill * (+state.customPercent / 100)) /
+              state.numOfPeople
+            ).toFixed(2)
+          );
     }
-    if (numOfPeople > 0 && bill > -1) {
-      setTotal((bill + +tip / numOfPeople).toFixed(2));
+    if (state.numOfPeople > 0 && state.bill > -1) {
+      setCalculatedTotal(
+        (state.bill + +calculatedTip / state.numOfPeople).toFixed(2)
+      );
     }
   });
 
   const toggleButtonClick = (valueMapElement: string) => {
-    const tipPercentage: number = +valueMapElement;
-    setPercent(tipPercentage);
+    setPercent(+valueMapElement);
   };
 
   const inputBillHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,50 +61,41 @@ function Calculator() {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     if (+event.target.value < 1) {
-      setError("focus-visible:border-ring-col-r");
-      setError2("focus-visible:ring-ring-col-r");
+      seterrorBoarder("focus-visible:border-ring-col-r");
+      seterrorBoarder2("focus-visible:ring-ring-col-r");
     } else {
-      setError("");
-      setError2("");
-      setnumOfPeople(Math.floor(+event.target.value));
+      seterrorBoarder("");
+      seterrorBoarder2("");
+      setNumOfPeople(Math.floor(+event.target.value));
     }
   };
 
   const inputCustomTipHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setcustomPercent(event.target.value);
-  };
-
-  const ressetStates = () => {
-    setTip((0).toFixed(2));
-    setTotal((0.0).toFixed(2));
-    setBill(-1);
-    setnumOfPeople(0);
-    setPercent(0);
-    setcustomPercent("");
-    setError("");
-    setError2("");
+    setCustomPercent(event.target.value);
   };
 
   const defaultValuePeople = () => {
-    if (numOfPeople > 0) {
-      return numOfPeople;
+    if (state.numOfPeople > 0) {
+      return state.numOfPeople;
     } else {
       return "";
     }
   };
 
   const defaultValueBill = () => {
-    if (bill > -1) {
-      return bill;
+    if (state.bill > -1) {
+      return state.bill;
     } else {
       return "";
     }
   };
 
-  const removeCustomPercent = () => {
-    setcustomPercent("");
+  const resetValue = () => {
+    reset();
+    setCalculatedTip((0.0).toFixed(2));
+    setCalculatedTotal((0.0).toFixed(2));
   };
 
   return (
@@ -139,7 +147,7 @@ function Calculator() {
                 id="custom"
                 placeholder="Custom"
                 className="h-9 py-7 sm:placeholder:text-center [&::-webkit-inner-spin-button]:appearance-none"
-                value={customPercent}
+                value={state.customPercent}
                 onChange={inputCustomTipHandler}
                 onClick={removeCustomPercent}
               />
@@ -155,13 +163,13 @@ function Calculator() {
                 width={15}
                 height={15}
               />
-              {error && (
+              {state.errorBoarder && (
                 <p className="absolute right-2 bottom-14 text-sm text-red-500">
-                  Cant be zero
+                  {`Can't be zero`}
                 </p>
               )}
               <Input
-                className={`pl-10 [&::-webkit-inner-spin-button]:appearance-none ${error} ${error2}`}
+                className={`pl-10 [&::-webkit-inner-spin-button]:appearance-none ${state.errorBoarder} ${state.errorBoarder2}`}
                 type="number"
                 id="people"
                 placeholder="0"
@@ -172,9 +180,9 @@ function Calculator() {
           </div>
         </div>
         <Result
-          tip={tip.toString()}
-          total={total.toString()}
-          onCLickResetHandler={() => ressetStates()}
+          tip={calculatedTip.toString()}
+          total={calculatedTotal.toString()}
+          onCLickResetHandler={() => resetValue()}
         />
       </div>
     </div>
