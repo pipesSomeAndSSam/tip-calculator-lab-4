@@ -42,7 +42,7 @@ function Calculator() {
     }
     if (state.numOfPeople > 0 && state.bill > -1) {
       setCalculatedTotal(
-        (state.bill + +calculatedTip / state.numOfPeople).toFixed(2)
+        (state.bill / state.numOfPeople + +calculatedTip).toFixed(2)
       );
     }
   });
